@@ -1,41 +1,35 @@
 import socket
 
-def grab_banner(ip,port):
+def grab_banner(sock):
     """
-    
-    Attempts to connect to the given IP and port to retrieve a banner.
-    Returns the banner as a string, or "no banner" if unsuccessful
-    
+    Attempts to retrieve a banner from an open socket.
+    Returns the banner as a string or 'NO banner' if none found.
     """
     try:
-        s = socket.socket()
-        s.settimeout(2)
-        s.connect((ip, port))
-        banner = s.recv(1024).decode().strip()
-        s.close()
-        return banner
+        sock.settimeout(2)
+        banner = sock.recv(1024).decode(errors='ignore').strip()
+        return banner if banner else "NO banner"
     except Exception:
         return "NO banner"
-    
+
 def scan_ports(ip, ports=None):
     """
-    
     Scans common ports on the target IP.
-    Returns a list of touples (port, banner) for ports that are open.
-    
+    Returns a list of tuples (port, banner) for ports that are open.
     """
     if ports is None:
         ports = [21, 22, 23, 25, 53, 80, 110, 143, 443, 445, 3389]
 
-        open_ports = []
-        for port in ports:
-            try:
-                s = socket.socket()
-                s.settimeout(0.5)
-                s.connect((ip, port))
-                banner = grab_banner(ip, port)
-                open_ports.append((port, banner))
-                s.close()
-            except Exception:
-                pass
-            return open_ports
+    open_ports = []
+    for port in ports:
+        try:
+            sock = socket.socket()
+            sock.settimeout(1)
+            sock.connect((ip, port))
+            banner = grab_banner(sock)
+            open_ports.append((port, banner))
+            sock.close()
+        except Exception:
+            pass
+    return open_ports
+
