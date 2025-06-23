@@ -12,22 +12,27 @@ def create_markdown_report(domain, ip, whois_data, geo, dns, ports):
         f.write(f"# Recon Report for {domain}\n")
         f.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
 
-        # IP Address
+        # Target IP Address
         f.write("## Target IP Address\n")
-        f.write(f"```\n{ip}\n```\n\n")
+        f.write("```\n")
+        f.write(f"{ip}\n")
+        f.write("```\n\n")
 
-        # Geolocation (formatted)
+        # Geolocation
         f.write("## Geolocation\n")
         if isinstance(geo, dict):
             if "error" in geo:
                 f.write(f"```\n{geo['error']}\n```\n\n")
             else:
-                f.write("\n".join(f"- **{key.capitalize()}**: {value}" for key, value in geo.items()))
-                f.write("\n\n")
+                for key, value in geo.items():
+                    f.write(f"- **{key.capitalize()}**: {value}\n")
+                f.write("\n")
         else:
-            f.write(f"```\n{geo}\n```\n\n")
+            f.write("```\n")
+            f.write(f"{geo}\n")
+            f.write("```\n\n")
 
-        # WHOIS Information (formatted)
+        # WHOIS Information
         f.write("## WHOIS Information\n")
         if isinstance(whois_data, dict):
             if "error" in whois_data:
@@ -37,9 +42,11 @@ def create_markdown_report(domain, ip, whois_data, geo, dns, ports):
                     f.write(f"- **{key.replace('_', ' ').capitalize()}**: {value}\n")
                 f.write("\n")
         else:
-            f.write(f"```\n{str(whois_data)}\n```\n\n")
+            f.write("```\n")
+            f.write(str(whois_data))
+            f.write("\n```\n\n")
 
-        # DNS Records (formatted)
+        # DNS Records
         f.write("## DNS Records\n")
         for record_type, records in dns.items():
             f.write(f"### {record_type} Records\n")
@@ -50,7 +57,7 @@ def create_markdown_report(domain, ip, whois_data, geo, dns, ports):
                 f.write("- No records found or error occurred.\n")
             f.write("\n")
 
-        # Open ports and banners
+        # Open Ports and Banners
         f.write("## Open Ports and Banners\n")
         if ports:
             for port, banner in ports:
