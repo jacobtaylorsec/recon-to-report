@@ -44,8 +44,9 @@ Run the tool:
 
 ```bash
 python recon.py
-Follow the prompt to enter the target domain:
 ```
+Follow the prompt to enter the target domain:
+
 ```plaintext
 Enter target domain: example.com
 ```
