@@ -19,6 +19,14 @@ By using this tool, you agree to take full responsibility for your actions and c
 
 The developer assumes **no liability** for any misuse or damage caused by this software.
 
+---
+
+## 📋 Prerequisites
+
+- Python 3.10 or higher  
+- Required Python packages (install via `requirements.txt`)
+
+---
 
 ## 🛠️ How to Use
 
@@ -27,3 +35,28 @@ The developer assumes **no liability** for any misuse or damage caused by this s
    ```bash
    git clone https://github.com/jacobtaylorsec/recon-to-report.git
    cd recon-to-report
+Install required dependencies:
+
+bash
+pip install -r requirements.txt
+Run the tool:
+
+bash
+python recon.py
+Follow the prompt to enter the target domain:
+
+yaml
+Enter target domain: example.com
+After completion, open report.md to see the generated report.
+
+⚠️ Legal and Ethical Notice
+Please use this tool only on domains and systems for which you have explicit permission to test. Unauthorized scanning or probing is illegal and can have serious consequences.
+
+📜 License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+🙌 Contribution
+Contributions, issues, and feature requests are welcome! Feel free to open a pull request or issue on GitHub.
+
+📫 Contact
+Developed by Jacob Taylor — GitHub Profile
