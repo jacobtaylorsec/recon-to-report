@@ -32,5 +32,5 @@ def main():
     create_markdown_report(domain, ip, whois_data, geo_data, dns_data, ports)
     print("Recon complete. Report saved as 'report.md'.")
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
