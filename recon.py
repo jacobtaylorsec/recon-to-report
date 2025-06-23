@@ -2,7 +2,7 @@ from recon.dns_tools import get_dns_records
 from recon.geo import get_geolocation
 from recon.port_scanner import scan_ports
 from recon.reporter import create_markdown_report
-from recon.whois_lookup import getwho_whois as get_whois
+from recon.whois_lookup import get_whois
 import socket
 
 def main():
