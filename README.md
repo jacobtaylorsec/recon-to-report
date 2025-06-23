@@ -39,14 +39,16 @@ Install required dependencies:
 
 ```bash
 pip install -r requirements.txt
+```
 Run the tool:
 
 ```bash
 python recon.py
 Follow the prompt to enter the target domain:
-
+```
 ```plaintext
 Enter target domain: example.com
+```
 After completion, open report.md to see the generated report.
 
 ⚠️ Legal and Ethical Notice
